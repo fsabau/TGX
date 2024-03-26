@@ -65,7 +65,7 @@ def discretize_edges(edgelist: dict,
     else:
         raise TypeError("Please provide a time interval")
     
-    num_time_scale = ceiling_division(total_time, interval_size)    
+    num_time_scale = total_time // interval_size  
     print(f'Discretizing data to {num_time_scale} timestamps...')
 
     updated_edgelist = {}
@@ -74,7 +74,7 @@ def discretize_edges(edgelist: dict,
         unix_dict = []
         start_time = int(unique_ts[0])
     for ts, edges_list in edgelist.items():
-        bin_ts = ceiling_division(ts, interval_size)  #will correctly put edges into the last bin
+        bin_ts = min(num_time_scale - 1, ts // interval_size)  #will correctly put edges into the last bin
 
         for edge in edges_list:
             if bin_ts not in updated_edgelist:

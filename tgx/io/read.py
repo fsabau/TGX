@@ -79,7 +79,7 @@ def _load_edgelist(fname, columns, header):
     for i in range(first_line, len(lines)):
         line = lines[i]
         values = line.split(',')
-        t = int(float(values[ts_idx]))
+        t = float(values[ts_idx])
         u = values[u_idx].strip()
         v = values[v_idx].strip()
         
